@@ -9,7 +9,8 @@ enable :sessions
 
 before do
   if not session[:server_for_this_session]
-    servers = ['http://localhost:10000', 'http://localhost:10001']
+    # servers = ['http://localhost:10000', 'http://localhost:10001']
+    servers = ['http://www.hs.fi', 'http://www.yle.fi']
     random_index = rand(servers.length)
     session[:server_for_this_session] = servers[random_index] # forward randomly
   end
