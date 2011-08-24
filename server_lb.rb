@@ -5,6 +5,12 @@ require 'redis'
 require 'sinatra/reloader'
 require 'net/http'
 
+enable :sessions
+
+get '/session' do
+  session[:testing] = 'hello'
+end
+
 get '*' do
   servers = ['http://localhost:10000', 'http://localhost:10001']
   random_index = rand(servers.length)
