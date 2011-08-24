@@ -5,40 +5,40 @@ www.heroku.com
 Record type   name              data
 
 CNAME         www.heroku.com    proxy.heroku.com
-A             proxy.heroku.com	184.73.173.41
-A             proxy.heroku.com	50.16.232.130
-A             proxy.heroku.com	184.73.171.204
-NS            heroku.com      	ns3.p19.dynect.net.
-NS            heroku.com      	ns4.p19.dynect.net.
-NS            heroku.com		  	ns1.p19.dynect.net.
-NS            heroku.com		  	ns2.p19.dynect.net.
+A             proxy.heroku.com  184.73.173.41
+A             proxy.heroku.com  50.16.232.130
+A             proxy.heroku.com  184.73.171.204
+NS            heroku.com        ns3.p19.dynect.net.
+NS            heroku.com        ns4.p19.dynect.net.
+NS            heroku.com        ns1.p19.dynect.net.
+NS            heroku.com        ns2.p19.dynect.net.
 
 heroku.com
 
 Record type   name              data
 
-A             heroku.com	    	50.19.85.132
-A             heroku.com	    	50.19.85.154
-A             heroku.com	    	50.19.85.156
+A             heroku.com        50.19.85.132
+A             heroku.com        50.19.85.154
+A             heroku.com        50.19.85.156
 NS            heroku.com        ns1.p19.dynect.net.
-NS            heroku.com      	ns3.p19.dynect.net.
-NS            heroku.com		  	ns2.p19.dynect.net.
-NS            heroku.com		  	ns4.p19.dynect.net.
+NS            heroku.com        ns3.p19.dynect.net.
+NS            heroku.com        ns2.p19.dynect.net.
+NS            heroku.com        ns4.p19.dynect.net.
 
-MX            heroku.com	      aspmx2.googlemail.com.
-MX            heroku.com	      aspmx3.googlemail.com.
-MX            heroku.com	      aspmx4.googlemail.com.
+MX            heroku.com        aspmx2.googlemail.com.
+MX            heroku.com        aspmx3.googlemail.com.
+MX            heroku.com        aspmx4.googlemail.com.
 MX            heroku.com        aspmx5.googlemail.com.
 MX            heroku.com        alt1.aspmx.l.google.com.
 MX            heroku.com        alt2.aspmx.l.google.com.
 MX            heroku.com        aspmx.l.google.com.
 
-A             alt1.aspmx.l.google.com 	74.125.127.27
-A             alt2.aspmx.l.google.com 	209.85.225.27
-A             aspmx2.googlemail.com   	74.125.43.27
-A             aspmx3.googlemail.com   	74.125.127.27
-A             aspmx4.googlemail.com   	209.85.229.27
-A             aspmx5.googlemail.com   	74.125.157.27
+A             alt1.aspmx.l.google.com  74.125.127.27
+A             alt2.aspmx.l.google.com  209.85.225.27
+A             aspmx2.googlemail.com    74.125.43.27
+A             aspmx3.googlemail.com    74.125.127.27
+A             aspmx4.googlemail.com    209.85.229.27
+A             aspmx5.googlemail.com    74.125.157.27
 
 2. 3 distinct IP addresses
 3. Apparently 3 addresses as well.
