@@ -13,4 +13,5 @@ end
 
 post '/messages' do
   @redis.rpush "messages", params[:message]
+  redirect "chat.html"
 end
