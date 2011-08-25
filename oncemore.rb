@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'redis'
 require 'sinatra/reloader'
-
+require 'net/http'
 before do
   @redis = Redis.new
 end
@@ -15,5 +15,11 @@ get '/hello/*' do
     string = string +" with "+params[:with]
   end
   return string
+end
+
+get '/' do
+  uri = URI.parse('http://localhost:4567/hello/somebody')
+  response = Net::HTTP.get_response(uri)
+  return response.body
 end
 
