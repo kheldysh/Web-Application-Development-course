@@ -24,3 +24,13 @@ get '/greetings/:id' do
     status 404
   end
 end
+
+delete '/greetings/:id' do
+  id = params[:id]
+  keys_deleted = @redis.del "greetings:#{id}"
+  if keys_deleted == 1 # isn't checking for 1 a bit volatile?
+    ""
+  else
+    status 404
+  end
+end
