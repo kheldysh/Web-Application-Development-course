@@ -6,6 +6,32 @@ before do
   @redis = Redis.new
 end
 
+# generic string service
+
+put '/:key' do
+  @redis.set params[:key], params[:value]
+end
+
+get '/:key' do
+  value = @redis.get params[:key]
+  if value
+    return value
+  else
+    status 404
+  end
+end
+
+delete '/:key' do
+  keys_deleted = @redis.del params[:key]
+  if keys_deleted == 1 # isn't checking for 1 a bit volatile?
+    ""
+  else
+    status 404
+  end
+end
+
+# greeting service
+
 post '/greetings' do
   id = @redis.incr 'greeting_id'
   puts id
