@@ -1,0 +1,19 @@
+1. Because the load balancer can't start new threads for new requests,
+  it's capacity is entirely limited by the capacity of actual servers.
+  Because both A and B serve requests equally fast,
+  max_thru(LB) = max_thru(A) = max_thru(B) = 100req/s.
+
+2. Sticky sessions should not affect this, as it won't do anything to 
+  single-threadedness. max_thru(LB) = max_thru(A) = max_thru(B) stands.
+
+3. As one of the servers handles requests more quickly than the other, and
+  request forwarding is equally random between both servers,
+  avg_thru(LB) = (max_thru(A) + max_thru(B))/2 = 150req/s.
+  
+4. Sticky sessions still have no effect. 150reqs/s.
+
+5. Multi-threadedness would make available the full capacity of both servers,
+  thus in the case of 1 max_thru(LB) would be max_thru(A)+max_thru(B) = 200req/s.
+  In 3, avg_thru(LB) would be max_thru(A)*2 = 200req/s, as request distribution
+  is equally random and does not take into account server performance. Half of
+  the requests would still go to A.
