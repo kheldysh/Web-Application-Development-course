@@ -1,6 +1,6 @@
 require 'sinatra'
-require 'sinatra/reloader'
 require 'redis'
+require 'sinatra/reloader'
 
 before do
   @redis = Redis.new
@@ -13,8 +13,9 @@ post '/greetings' do
 end
 
 get '/greetings/:id' do
-  value = @redis.get params[:greeting]
-  
+  id = params[:id]
+  value = @redis.get 'greetings:#{id}'
+  puts 'greetings:#{id}'
   if value
     return value
   else
