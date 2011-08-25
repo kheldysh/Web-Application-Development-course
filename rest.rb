@@ -12,4 +12,12 @@ post '/greetings' do
   return id.inspect
 end
 
-
+get '/greetings/:id' do
+  value = @redis.get params[:greeting]
+  
+  if value
+    return value
+  else
+    status 404
+  end
+end
