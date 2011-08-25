@@ -13,5 +13,12 @@ end
 
 post '/messages' do
   @redis.rpush "messages", params[:message]
-  redirect "chat.html"
+  redirect "/"
 end
+
+get '/' do
+  @messages = @redis.lrange "messages", -3, -1
+  
+  erb :chat
+end
+
