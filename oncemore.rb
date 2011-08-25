@@ -17,6 +17,13 @@ get '/hello/*' do
   return string
 end
 
+get '/templated' do
+  uri = URI.parse('http://localhost:4567/')
+  response = Net::HTTP.get_response(uri)
+  @the_output = response.body
+  erb :templated
+end
+
 get '/' do
   uri = URI.parse('http://localhost:4567/hello/somebody')
   response = Net::HTTP.get_response(uri)

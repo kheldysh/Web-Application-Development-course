@@ -1,0 +1,11 @@
+<p>The amazing flow of execution:</p>
+
+<ol>
+  <li>GET /templated</li>
+  <li>triggers GET /</li>  
+  <li>that triggers GET /hello/somebody</li>
+  <li>and the response is returned to /</li>
+  <li>that returns it to /templated</li>  
+  <li>that sets the response in instance variable</li>
+  <li>that gets rendered in this view template, here: <%= @the_output %></li>
+</ol>
