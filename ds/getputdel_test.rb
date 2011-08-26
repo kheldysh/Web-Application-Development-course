@@ -188,4 +188,44 @@ Integreat "List operations" do
    
   end
 
+  Test "Some random testing" do
+     
+     Step "Add 10 items to the list" do
+       10.times do |i|
+         @client.post "/lists/shoppinglist", { "value" => i }
+       end
+     end
+
+     Step "The list length is '10'" do
+       @client.get "/lists/shoppinglist/length"
+       
+       assert("10", @client.responses.last.body)
+     end
+     
+     Step "Pop 9 times" do
+       9.times do
+         @client.delete "/lists/shoppinglist/pop"
+       end
+       
+       assert("200", @client.responses.last.status)
+     end
+     
+     Step "The list length is 1" do
+       @client.get "/lists/shoppinglist/length"
+       
+       assert("1", @client.responses.last.body)        
+     end
+
+     Step "Pop one more time" do
+       @client.delete "/lists/shoppinglist/pop"        
+     end
+     
+     Step "The list has emptied" do
+       @client.get "/lists/shoppinglist/length"
+       
+       assert("0", @client.responses.last.body)                
+     end
+     
+   end
+
 end
