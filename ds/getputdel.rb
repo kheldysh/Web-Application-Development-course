@@ -6,6 +6,14 @@ before do
   @redis = Redis.new
 end
 
+post "/keys/:key/increment" do
+  @redis.incr params[:key]
+end
+
+post "/keys/:key/decrement" do
+  @redis.decr params[:key]
+end
+
 put '/keys/:key' do
   @redis.set params[:key], params[:value]
 end
