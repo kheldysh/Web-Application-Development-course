@@ -6,7 +6,7 @@ Integreat "Key-Value Store" do
   Test "Basic operations with keys" do
   
     Step "Setup a client for localhost, port 4567" do
-      @client = Curlser.new "http://localhost:4567"
+      @client = Curlser.new "http://admin:secret@localhost:4567"
       @client.delete_all_responses!
     end
 
@@ -228,4 +228,22 @@ Integreat "List operations" do
      
    end
 
+end
+
+Integreat "Access control" do
+
+  Test "try in without auth" do
+
+    Step "Setup a new client for localhost, port 4567" do
+      @without_auth_client = Curlser.new "http://localhost:4567"
+      @without_auth_client.delete_all_responses!
+    end
+   
+    Step "Reading any key results in HTTP 401 status" do
+     @without_auth_client.get "/keys/anykey"
+     assert("401", @without_auth_client.responses.last.status)
+    end
+   
+  end
+  
 end

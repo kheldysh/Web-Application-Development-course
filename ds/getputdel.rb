@@ -3,7 +3,12 @@ require 'redis'
 require 'sinatra/reloader'
 
 before do
-  @redis = Redis.new
+  @redis = Redis.new    
+
+  use Rack::Auth::Basic do |username,password|
+    username == 'admin' && password == 'secret'
+  end
+  
 end
 
 get '/lists/:key/length' do
@@ -51,4 +56,8 @@ delete '/keys/:key' do
   else
     status 404
   end
+end
+
+get '/' do
+  return "Keyservice root"
 end
