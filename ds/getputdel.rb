@@ -6,6 +6,23 @@ before do
   @redis = Redis.new
 end
 
+get '/lists/:key/length' do
+  len = @redis.llen params[:key]
+  return len.inspect
+end
+
+delete '/lists/:key/pop' do
+  @redis.rpop params[:key]
+end
+
+delete '/lists/:key' do
+  @redis.del params[:key]
+end
+
+post "/lists/:key" do
+  @redis.rpush params[:key], params[:value]
+end
+
 post "/keys/:key/increment" do
   @redis.incr params[:key]
 end
@@ -35,5 +52,3 @@ delete '/keys/:key' do
     status 404
   end
 end
-
-
