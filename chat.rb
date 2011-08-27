@@ -2,6 +2,8 @@ require 'sinatra'
 require 'redis'
 require 'sinatra/reloader'
 
+set :port, 10_003
+
 before do
   @redis = Redis.new
 end
@@ -39,6 +41,6 @@ end
 get '/' do
   etag @redis.get "messages_last_updated_at"
   @messages = @redis.lrange "messages", -3, -1
-  take_it_slow_now(4)
+  # take_it_slow_now(4)
   erb :chat
 end
