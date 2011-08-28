@@ -1,2 +1,7 @@
 <h2><%= @exercise.tag %></h2>
+
+<% form_for @submission, :url => exercise_submissions_path(@exercise) do |f| %>
+  <%= f.text_area :answer %>
+  <%= submit_tag "ok" %>
+<% end %>
 <hr />

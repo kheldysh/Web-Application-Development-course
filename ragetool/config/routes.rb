@@ -14,7 +14,10 @@ Ragetool::Application.routes.draw do
   # first created -> highest priority.
 
   resources :greetings
-  resources :exercises
+  resources :exercises do
+    resources :submissions
+  end
+  
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
