@@ -4,6 +4,8 @@ require 'sinatra/reloader'
 
 # set :port, 10_003
 
+enable :sessions
+
 before do
 
   @redis = Redis.new
@@ -32,19 +34,19 @@ get '/cachetesting' do
 end
 
 get '/messages' do
-  messages = @redis.lrange "messages", -3, -1
+  messages = @redis.lrange "messages", -20, -1
   return messages.inspect
 end
 
 post '/messages' do
-  @redis.rpush "messages", params[:message]
-  @redis.set "messages_last_updated_at", Time.now.to_i
+  @redis.rpush "workqueue-messages", params[:message]
+  # @redis.set "messages_last_updated_at", Time.now.to_i
   redirect "/"
 end
 
 get '/' do
   etag @redis.get "messages_last_updated_at"
-  @messages = @redis.lrange "messages", -3, -1
+  @messages = @redis.lrange "messages", -20, -1
   take_it_slow_now(4)
   erb :chat
 end
