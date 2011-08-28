@@ -1,4 +1,15 @@
 Ragetool::Application.routes.draw do
+
+  root :to => "exercises#index"
+
+  devise_for :users
+
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
+  resources :exercise_sessions
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

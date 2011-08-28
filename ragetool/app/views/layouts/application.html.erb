@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ragetool</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+ <title>Ragetool</title>
+ <%= stylesheet_link_tag :all %>
+ <%= javascript_include_tag :defaults %>
+ <%= csrf_meta_tag %>
 </head>
 <body>
+
+    <% if current_user %>
+       <%= current_user.email %> (<%= link_to "logout", destroy_user_session_path, :method => :delete %>)<br/>
+          <hr/>
+       <% end %>
 
 <%= yield %>
 
