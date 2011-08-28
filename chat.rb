@@ -40,13 +40,19 @@ end
 
 post '/messages' do
   @redis.rpush "workqueue-messages", params[:message]
-  # @redis.set "messages_last_updated_at", Time.now.to_i
+  session[:last_message_that_has_not_yet_been_written_to_database] = params[:message]
+  @redis.set "messages_last_updated_at", Time.now.to_i
   redirect "/"
 end
 
 get '/' do
   etag @redis.get "messages_last_updated_at"
   @messages = @redis.lrange "messages", -20, -1
-  take_it_slow_now(4)
+  if session[:last_message_that_has_not_yet_been_written_to_database]
+    @messages << session[:last_message_that_has_not_yet_been_written_to_database]
+    session[:last_message_that_has_not_yet_been_written_to_database] = nil
+  end
+
+  # take_it_slow_now(4)
   erb :chat
 end
