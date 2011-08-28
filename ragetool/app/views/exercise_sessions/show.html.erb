@@ -10,6 +10,12 @@
   <%= @exercise_session.starts_at %>
 </p>
 
+<p>
+  <b>Users:</b>
+  <% @exercise_session.users.each do |u| %>
+    <li><%= u.email %></li>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_exercise_session_path(@exercise_session) %> |
 <%= link_to 'Back', exercise_sessions_path %>

@@ -8,5 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
   has_many :submissions
+  has_many :signups # all signups
+  has_many :exercise_sessions, :through => :signups # all exercise sessions for this user through the join table
   
 end
