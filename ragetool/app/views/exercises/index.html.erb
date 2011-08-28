@@ -1,0 +1,7 @@
+<h2>Exercises</h2>
+
+<ul>
+  <% for exercise in @exercises %>
+    <li><%= link_to exercise.tag_with_square_brackets, exercise_path(exercise) %></li>
+  <% end %>
+</ul>
