@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+   <head>
+       <title>Exercises</title>     
+       <meta charset="utf-8" />
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+   </head>
+
+   <body>
+       <h1>Exercises available</h1>
+       <script type="text/javascript">
+          $(document).ready(function() {
+            $.getJSON('exercises.json', function(data) {
+              var items = [];
+              //document.write(items);
+              $.each(data, function(key, val) {
+                items.push('<li id="' + key + '">' + val.exercise.tag + '</li>');
+              });
+
+              $('<ul/>', {
+                html: items.join('')
+              }).appendTo('body');
+            });           
+          });
+       </script>
+
+   </body>
+
+</html>
